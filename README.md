@@ -1,7 +1,6 @@
 # auto-wanan
 
-小遊戲 : [借用凱達格蘭大道大作戰
-](https://sansword.github.io/no_party_for_wanna/)
+小遊戲 : [借用凱達格蘭大道大作戰](https://sansword.github.io/no_party_for_wanna/)
 
 ## 啟動指令
 
