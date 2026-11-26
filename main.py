@@ -1,9 +1,5 @@
-"""15 秒 HTTP 計時器（CLI，含信賴區間、自動對齊與多玩家並行）。Python 3.9+，僅使用標準函式庫。
-
-py main.py
-py main.py -l
-py main.py -np xxx,yyy,zzz
-py main.py -np '"player one","player two"' -l
+"""
+蔣寶不乖
 """
 import argparse
 from collections import deque
