@@ -1,8 +1,9 @@
 """15 秒 HTTP 計時器（CLI，含信賴區間、自動對齊與多玩家並行）。Python 3.9+，僅使用標準函式庫。
 
-py run_results.py
-py run_results.py -np xxx,yyy,zzz
-py run_results.py -np '"player one","player two"'
+py main.py
+py main.py -l
+py main.py -np xxx,yyy,zzz
+py main.py -np '"player one","player two"' -l
 """
 import argparse
 from collections import deque
@@ -435,12 +436,13 @@ def ask_next_action():
         safe_print("請輸入 y、n 或 l。")
 
 
-def run_cli(url, players, input_fn=ask_next_action):
+def run_cli(url, players, input_fn=ask_next_action, auto_loop=False):
     safe_print(f"目標網址　{url}")
     safe_print(f"玩家名單（{len(players)} 並行）　{', '.join(players)}")
+    if auto_loop:
+        safe_print("自動循環模式已啟用（按 Ctrl+C 停止）。")
     aligners = [TimingAligner() for _ in players]
     stop_event = threading.Event()
-    auto_loop = False
     run_count = 0
     try:
         while True:
@@ -470,9 +472,15 @@ if __name__ == "__main__":
         metavar="NAMES",
         help='並行玩家名稱，以逗號分隔（可用 "..." 括號含空格名稱），例如 xxx,yyy,zzz',
     )
+    parser.add_argument(
+        "-l",
+        "--loop",
+        action="store_true",
+        help="啟動後直接進入自動循環（auto loop）模式",
+    )
     args = parser.parse_args()
     try:
         player_list = parse_players(args.np) if args.np is not None else [DEFAULT_PLAYER]
     except ValueError as exc:
         parser.error(str(exc))
-    run_cli(TARGET_URL, player_list)
+    run_cli(TARGET_URL, player_list, auto_loop=args.loop)

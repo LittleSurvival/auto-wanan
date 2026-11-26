@@ -1,9 +1,12 @@
 # auto-wanan
 
+小遊戲 : [借用凱達格蘭大道大作戰
+](https://sansword.github.io/no_party_for_wanna/)
+
 ## 啟動指令
 
 ```bash
-py run_results.py
+py main.py
 ```
 
 ## `-np` 參數使用方式
@@ -11,8 +14,8 @@ py run_results.py
 使用 `-np` 指定並行玩家名稱（以逗號 `,` 分隔），會同時開啟對應數量的並行執行緒分別送出請求；若名稱內含空白，可用雙引號 `"..."` 括起來：
 
 ```bash
-py run_results.py -np xxx,yyy,zzz
-py run_results.py -np '"player one","player two",player3'
+py main.py -np xxx,yyy,zzz
+py main.py -np '"player one","player two",player3'
 ```
 
 ## 自動校準系統概述
